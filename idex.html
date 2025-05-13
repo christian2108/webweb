@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Vistas</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbNNfsPHUOpXCrvgz2zvBS3_GuG1efiESamw&s');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            text-align: center;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #FFD700;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #1a73e8;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        #viewCount {
+            font-size: 22px;
+            font-weight: bold;
+            color: #FFD700;
+        }
+    </style>
+    <script>
+        // Función para incrementar vistas si es un usuario único
+        function incrementarVistas() {
+            // Verificar si el usuario ya fue contado
+            let usuarioContado = localStorage.getItem('usuarioContado');
+
+            if (!usuarioContado) {
+                // Si no ha sido contado, incrementar el contador
+                let vistas = localStorage.getItem('contadorVistas') || 0;
+                vistas++;
+                localStorage.setItem('contadorVistas', vistas);
+
+                // Marcar al usuario como contado
+                localStorage.setItem('usuarioContado', 'true');
+            }
+
+            // Mostrar el contador actualizado
+            let vistasActuales = localStorage.getItem('contadorVistas');
+            document.getElementById('viewCount').innerText = vistasActuales;
+        }
+
+        window.onload = incrementarVistas;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido</h1>
+        <p>Esta página ha sido vista <span id="viewCount">0</span> vez/veces por usuarios únicos.</p>
+        <a href="https://www.wikipedia.org" class="button" target="_blank">Ir a Wikipedia</a>
+        <a href="https://www.google.com" class="button" target="_blank">Ir a Google</a>
+    </div>
+</body>
+</html>
