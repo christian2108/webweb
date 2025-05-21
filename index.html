@@ -1,104 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contador de Vistas</title>
-    <style>
-        /* Estilos generales */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 100px;
-            background-image: url('https://preview.redd.it/x8v63p7wu2h61.jpg?width=1080&crop=smart&auto=webp&s=c1c6b3b87cbe98a328e6053f4be82f668ab1a7d7');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #fff;
-        }
-
-        .container {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 30px;
-            border-radius: 10px;
-            display: inline-block;
-            text-align: center;
-            max-width: 500px;
-            margin: auto;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: #FFD700;
-        }
-
-        p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-
-        .button {
-            background-color: #1a73e8;
-            color: #fff;
-            border: none;
-            border-radius: 25px;
-            padding: 12px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 10px;
-            text-decoration: none;
-        }
-
-       
-
-        #viewCount {
-            font-size: 22px;
-            font-weight: bold;
-            color: #FFD700;
-        }
-    </style>
-    <script>
-        // Función para incrementar vistas si es un usuario único
-        function incrementarVistas() {
-            // Verificar si el usuario ya fue contado
-            let usuarioContado = localStorage.getItem('usuarioContado');
-
-            if (!usuarioContado) {
-                // Si no ha sido contado, incrementar el contador
-                let vistas = localStorage.getItem('contadorVistas') || 0;
-                vistas++;
-                localStorage.setItem('contadorVistas', vistas);
-
-                // Marcar al usuario como contado
-                localStorage.setItem('usuarioContado', 'true');
-            }
-
-            // Mostrar el contador actualizado
-            let vistasActuales = localStorage.getItem('contadorVistas');
-            document.getElementById('viewCount').innerText = vistasActuales;
-        }
-
-        window.onload = incrementarVistas;
-    </script>
+  <meta charset="UTF-8">
+  <title>Página Estética con Música y Contador</title>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      /* Cambia la URL de la imagen aquí */
+      background: url('https://wallpapers.com/images/hd/cool-4k-ultra-hd-zjdx24btojicewof.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .container {
+      background: rgba(0,0,0,0.6);
+      border-radius: 18px;
+      padding: 40px 50px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      color: #fff;
+      min-width: 300px;
+      max-width: 90vw;
+    }
+    .btn, .btn-enter {
+      margin-top: 25px;
+      padding: 12px 32px;
+      background: linear-gradient(90deg, #4e54c8, #8f94fb);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.1s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .btn:hover, .btn-enter:hover {
+      background: linear-gradient(90deg, #8f94fb, #4e54c8);
+      transform: scale(1.05);
+    }
+    .contador {
+      font-size: 1.3em;
+      margin-top: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .fade-in {
+      animation: fadeIn 1s;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Bienvenido</h1>
-        <p>Esta página ha sido vista <span id="viewCount">0</span> vez/veces por usuarios únicos.</p>
-        <button onclick="window.location.href='https://christian2108.github.io/webpage/'">Entrar la pagina</button>
-    </div>
-<!-- Agrega esto dentro del <body> de tu index.html -->
-<audio src="file:///C:/Users/Laboratorio%20Info/Downloads/Bon%20Iver-%20Wash.%20(Lyrics).mp3" autoplay loop controls>
-</audio>
-</audio>
-</body>
-</html>
+  <div id="welcome" class="container fade-in">
+    <h1>Bienvenido/a</h1>
+    <p class="contador">Visitas: <span id="visit-count">0</span></p>
+    <button class="btn-enter" onclick="entrarSitio()">Entrar</button>
+  </div>
+
+  <div id="main-content" class="container fade-in" style="display:none;">
+    <h2>¡Has entrado al sitio!</h2>
+    <button class="btn" onclick="window.location.href='https://www.ejemplo.com'">Ir a otra página</button>
+  </div>
+
+  <!-- Música de fondo (modifica la URL a tu preferencia) -->
+  <audio id="bg-music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
+
+  <script>
+    // Contador de visitas usando localStorage
+    const visitKey = 'visitCount';
+    let count = localStorage.getItem(visitKey);
+    if (!count) {
+      count = 1;
+    } else {
+      count = parseInt(count) + 1;
+    }
+    localStorage.setItem(visitKey, count);
+    document.getElementById('visit-count').innerText = count;
+
+    // Función para entrar al sitio y reproducir música
+    function entrarSitio() {
+      // Mostrar el contenido principal
+      document.getElementById('welcome').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      // Reproducir la música
+      const audio = document.getElementById('bg-music');
+      audio.volume = 0.5;
+      audio.play();
+    }
+  </script>
 </body>
 </html>
