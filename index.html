@@ -71,9 +71,17 @@
     <h1>Bienvenido/a</h1>
     <p class="contador">Visitas: <span id="visit-count">0</span></p>
   
-<button class="btn" onclick="window.location.href='https://christian2108.github.io/webpage/'">
-  Ir a la página
+<!-- Botón mejorado -->
+<button class="btn" onclick="entrarSitio()">
+  Entrar al sitio
 </button>
+
+<!-- Contenido principal oculto inicialmente -->
+<div id="main-content" style="display:none;" class="container fade-in">
+  <h2>¡Has entrado!</h2>
+  <p>Este es el contenido al que accedes tras presionar el botón.</p>
+  <!-- Puedes poner aquí más contenido o lo que necesites -->
+</div>
 
     <div class="show-audio">
       <audio id="audio" src="musica.mp3" autoplay loop controls></audio>
