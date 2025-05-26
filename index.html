@@ -9,7 +9,6 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      /* Cambia la URL de la imagen aquí */
       background: url('https://wallpapers.com/images/hd/cool-4k-ultra-hd-zjdx24btojicewof.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -19,7 +18,7 @@
       flex-direction: column;
     }
     .container {
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       border-radius: 18px;
       padding: 40px 50px;
       text-align: center;
@@ -27,8 +26,9 @@
       color: #fff;
       min-width: 300px;
       max-width: 90vw;
+      margin: 20px;
     }
-    .btn, .btn-enter {
+    .btn {
       margin-top: 25px;
       padding: 12px 32px;
       background: linear-gradient(90deg, #4e54c8, #8f94fb);
@@ -40,7 +40,7 @@
       transition: background 0.3s, transform 0.1s;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-    .btn:hover, .btn-enter:hover {
+    .btn:hover {
       background: linear-gradient(90deg, #8f94fb, #4e54c8);
       transform: scale(1.05);
     }
@@ -57,20 +57,30 @@
       0% { opacity: 0; transform: translateY(20px);}
       100% { opacity: 1; transform: translateY(0);}
     }
+    audio {
+      display: none;
+    }
+    .show-audio audio {
+      display: block;
+      margin: 10px auto;
+    }
   </style>
 </head>
 <body>
   <div id="welcome" class="container fade-in">
     <h1>Bienvenido/a</h1>
     <p class="contador">Visitas: <span id="visit-count">0</span></p>
-    <button class="btn-enter" onclick="entrarSitio(https://christian2108.github.io/webpage/)">Entrar</button>
+    <button class="btn" onclick="entrarSitio()">Entrar</button>
   </div>
 
   <div id="main-content" class="container fade-in" style="display:none;">
     <h2>¡Has entrado al sitio!</h2>
-      <button onclick="window.location.href='https://christian2108.github.io/webpage/'">Entrar la pagina</button>
+    <button class="btn" onclick="window.location.href='https://christian2108.github.io/webpage/'">Ir a la página principal</button>
+    <div class="show-audio">
+      <audio id="audio" src="musica.mp3" autoplay loop controls></audio>
     </div>
- <audio src="musica.mp3" autoplay loop hidden></audio>
+  </div>
+
   <script>
     // Contador de visitas usando localStorage
     const visitKey = 'visitCount';
@@ -81,12 +91,18 @@
       count = parseInt(count) + 1;
     }
     localStorage.setItem(visitKey, count);
-document.getElementById('visit-count').innerText = ‹audio controls>
+    document.getElementById('visit-count').innerText = count;
 
-  «source src="cancion.mp3" type="audio/
-mpeg">
-</audio>
-    
+    // Entrar al sitio
+    function entrarSitio() {
+      document.getElementById('welcome').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      // Reproducir música al entrar, si deseas, puedes quitar el autoplay del audio y hacerlo aquí
+      const audio = document.getElementById('audio');
+      if(audio) {
+        audio.play().catch(()=>{}); // Para evitar errores de autoplay en algunos navegadores
+      }
+    }
   </script>
 </body>
 </html>
