@@ -99,12 +99,12 @@
     function entrarSitio() {
       document.getElementById('welcome').style.display = 'none';
       document.getElementById('main-content').style.display = 'block';
-      // Reproducir música al entrar, si deseas, puedes quitar el autoplay del audio y hacerlo aquí
-      const audio = document.getElementById('audio');
-      if(audio) {
-        audio.play().catch(()=>{}); // Para evitar errores de autoplay en algunos navegadores
-      }
-    }
+       // Reproducir música automáticamente cada vez que entra un usuario
+    window.addEventListener('DOMContentLoaded', () => {
+      const audio = document.getElementById('audio-player');
+      // Algunos navegadores requieren interacción, pero intentamos forzar la reproducción
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
   </script>
 </body>
 </html>
