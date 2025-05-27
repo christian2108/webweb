@@ -58,11 +58,9 @@
       100% { opacity: 1; transform: translateY(0);}
     }
     audio {
-      display: none;
-    }
-    .show-audio audio {
+      margin: 15px auto;
       display: block;
-      margin: 10px auto;
+      outline: none;
     }
   </style>
 </head>
@@ -70,20 +68,17 @@
   <div id="welcome" class="container fade-in">
     <h1>Bienvenido/a</h1>
     <p class="contador">Visitas: <span id="visit-count">0</span></p>
-  
-
-<!-- Puedes poner esto donde quieras dentro del <body> de tu index.html -->
-<a href="https://christian2108.github.io/webpage/" target="_blank">
-  <button>ENTRAR A LA PAGINA</button>
-</a>
+    <a href="https://christian2108.github.io/webpage/" target="_blank">
+      <button class="btn">ENTRAR A LA PAGINA</button>
+    </a>
     <div class="music-player">
       <label for="audio-player">
-        <span class="material-icons" style="vertical-align:middle;">music_note</span>
-        Música de fondo
+        🎵 Música de fondo
       </label>
       <audio id="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" controls autoplay loop></audio>
     </div>
-
+  </div>
+  <script>
     // Contador de visitas usando localStorage
     const visitKey = 'visitCount';
     let count = localStorage.getItem(visitKey);
@@ -95,16 +90,16 @@
     localStorage.setItem(visitKey, count);
     document.getElementById('visit-count').innerText = count;
 
-    // Entrar al sitio
-    function entrarSitio() {
-      document.getElementById('welcome').style.display = 'none';
-      document.getElementById('main-content').style.display = 'block';
-       // Reproducir música automáticamente cada vez que entra un usuario
+    // Reproducir música automáticamente (algunos navegadores requieren interacción)
     window.addEventListener('DOMContentLoaded', () => {
       const audio = document.getElementById('audio-player');
-      // Algunos navegadores requieren interacción, pero intentamos forzar la reproducción
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play().catch(() => {
+          // Si el navegador bloquea la reproducción automática, no hacer nada
+        });
+      }
+    });
   </script>
 </body>
 </html>
