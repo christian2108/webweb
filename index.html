@@ -76,8 +76,14 @@
 <a href="https://christian2108.github.io/webpage/" target="_blank">
   <button>ENTRAR A LA PAGINA</button>
 </a>
-  <audio src="https://youtu.be/Hg4YMEOwUPo?t=63" autoplay loop></audio>
-    <body>
+    <div class="music-player">
+      <label for="audio-player">
+        <span class="material-icons" style="vertical-align:middle;">music_note</span>
+        Música de fondo
+      </label>
+      <audio id="audio-player" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" controls autoplay loop></audio>
+    </div>
+
     // Contador de visitas usando localStorage
     const visitKey = 'visitCount';
     let count = localStorage.getItem(visitKey);
