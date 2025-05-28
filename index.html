@@ -168,14 +168,25 @@
     </a>
     <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop ></audio>
   </div>
- <div id="contador-visitas"></div>
 <script>
-  fetch('https://api.countapi.xyz/hit/christian2108_webweb/visitas')
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('contador-visitas').innerHTML =
-        `<strong>Visitas a esta página: ${data.value}</strong>`;
-    });
+// Clave para el contador de vistas
+const contadorKey = 'contadorVistasWebpage';
+
+// Obtén el contador actual de localStorage o empieza en 0
+let contador = parseInt(localStorage.getItem(contadorKey)) || 0;
+
+// Incrementa el contador cada vez que se carga la página
+contador++;
+localStorage.setItem(contadorKey, contador);
+
+// Muestra el contador en la página
+window.onload = function() {
+    // Actualiza el span con id "viewCount"
+    var vista = document.getElementById('viewCount');
+    if (vista) {
+        vista.textContent = contador;
+    }
+}
 </script>
 </body>
 </html>
