@@ -75,28 +75,26 @@
     </div>
   </div>
   <script>
-    // Contador de visitas usando localStorage
-    const visitKey = 'visitCount';
-    let count = localStorage.getItem(visitKey);
-    if (!count) {
-      count = 1;
-    } else {
-      count = parseInt(count) + 1;
-    }
-    localStorage.setItem(visitKey, count);
-    document.getElementById('visit-count').innerText = count;
+// Clave para el contador de vistas
+const contadorKey = 'contadorVistasWebpage';
 
-    // Reproducir música automáticamente (algunos navegadores requieren interacción)
-    window.addEventListener('DOMContentLoaded', () => {
-      const audio = document.getElementById('audio-player');
-      if (audio) {
-        audio.currentTime = 0;
-        audio.play().catch(() => {
-          // Si el navegador bloquea la reproducción automática, no hacer nada
-        });
-      }
-    });
-  </script>
+// Obtén el contador actual de localStorage o empieza en 0
+let contador = parseInt(localStorage.getItem(contadorKey)) || 0;
+
+// Incrementa el contador cada vez que se carga la página
+contador++;
+localStorage.setItem(contadorKey, contador);
+
+// Muestra el contador en la página
+window.onload = function() {
+    // Actualiza el span con id "viewCount"
+    var vista = document.getElementById('viewCount');
+    if (vista) {
+        vista.textContent = contador;
+    }
+}
+</script>
+
 </body>
 </html>
 
