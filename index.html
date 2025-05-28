@@ -73,21 +73,17 @@
     </a>
     <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop style="display:none;"></audio>
   </div>
-<!-- ...tu código HTML arriba se mantiene igual... -->
-  <p>Visitas: <span id="visit-count">0</span></p>
-<script>
--->
-<script>
-  fetch('https://api.countapi.xyz/hit/christian2108-webweb/visits')
-    .then(res => res.json())
-    .then(res => {
-      document.getElementById('visit-count').textContent = res.value;
-    })
-    .catch(e => {
-      document.getElementById('visit-count').textContent = 'Error';
-      console.error(e);
-    });
-</script>
-  
+  <script>
+    fetch('https://api.countapi.xyz/hit/christian2108-webweb/visits')
+      .then(res => res.json())
+      .then(res => {
+        document.getElementById('visit-count').textContent = res.value;
+      })
+      .catch(e => {
+        document.getElementById('visit-count').textContent = 'Error';
+        console.error(e);
+      });
+  </script>
 </body>
 </html>
+
