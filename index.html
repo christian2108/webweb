@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Página Estética con Música y Contador</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       min-height: 100vh;
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      background: url('https://wallpapers.com/images/hd/4k-tech-wijwmfq6gxe3qf1m.jpg') no-repeat center center fixed;
+      background: linear-gradient(120deg, #232526 0%, #414345 100%);
+      /* Fallback background */
+      background-image: url('https://wallpapers.com/images/hd/4k-tech-wijwmfq6gxe3qf1m.jpg'), 
+                        linear-gradient(120deg, #232526 0%, #414345 100%);
+      background-blend-mode: overlay;
+      background-repeat: no-repeat;
+      background-position: center;
       background-size: cover;
       font-family: 'Segoe UI', Arial, sans-serif;
       display: flex;
@@ -18,60 +25,148 @@
       flex-direction: column;
     }
     .container {
-      background: rgba(0,0,0,0.7);
-      border-radius: 18px;
-      padding: 40px 50px;
+      background: rgba(30, 30, 40, 0.45);
+      border-radius: 24px;
+      padding: 48px 40px 36px 40px;
       text-align: center;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 36px 0 rgba(0,0,0,0.35), 0 1.5px 6px 0 rgba(103,61,230,0.13);
       color: #fff;
-      min-width: 300px;
-      max-width: 90vw;
-      margin: 20px;
+      min-width: 340px;
+      max-width: 94vw;
+      margin: 24px;
+      backdrop-filter: blur(8px) saturate(160%);
+      border: 1.5px solid rgba(120, 120, 200, 0.25);
+      animation: fadeIn 1.3s cubic-bezier(.42,0,.58,1);
+      position: relative;
+      overflow: hidden;
     }
-    .btn {
-      margin-top: 25px;
-      padding: 12px 32px;
-      background: linear-gradient(90deg, #4e54c8, #8f94fb);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.2em;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.1s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    .container::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      left: -35%;
+      width: 170%;
+      height: 180%;
+      background: radial-gradient(circle at 60% 10%,rgba(128,100,255,0.18) 0%,rgba(0,0,0,0) 70%);
+      z-index: 0;
+      pointer-events: none;
     }
-    .btn:hover {
-      background: linear-gradient(90deg, #8f94fb, #4e54c8);
-      transform: scale(1.05);
+    .container > * {
+      position: relative;
+      z-index: 1;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+      text-shadow: 0 6px 32px #7e71ff55, 0 1px 0 #111;
+      font-weight: 700;
     }
     .contador {
-      font-size: 1.3em;
-      margin-top: 18px;
-      font-weight: bold;
+      font-size: 1.25em;
+      margin-top: 10px;
+      margin-bottom: 24px;
+      font-weight: 600;
       letter-spacing: 1px;
+      background: linear-gradient(90deg, #ffd86f, #a6ffcb 80%);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 0 1px 8px #1e1e28;
+      padding: 6px 0;
+      transition: color 0.4s;
+      user-select: none;
     }
-    .fade-in {
-      animation: fadeIn 1s;
+    .btn {
+      margin-top: 12px;
+      padding: 15px 38px;
+      background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.22em;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 2.5px 32px 1px #7e71ff60, 0 2px 10px 0 #0005;
+      transition: background 0.3s, transform 0.1s, box-shadow 0.3s;
+      outline: none;
+      position: relative;
+      overflow: hidden;
     }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px);}
-      100% { opacity: 1; transform: translateY(0);}
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: 0 0 36px 12px #a6ffcb55;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .btn:hover,
+    .btn:focus {
+      background: linear-gradient(90deg, #647dee 0%, #7f53ac 100%);
+      transform: scale(1.06);
+      box-shadow: 0 6px 40px 0 #a6ffcb55, 0 2px 20px 0 #0008;
+    }
+    .btn:hover::after,
+    .btn:focus::after {
+      opacity: 1;
+    }
+    .music-note {
+      font-size: 2.6em;
+      margin-right: 6px;
+      vertical-align: middle;
+      color: #ffd86f;
+      text-shadow: 0 2px 16px #ffd86f77, 0 1px 0 #222;
+      animation: noteMove 1.6s infinite alternate cubic-bezier(.42,0,.58,1);
+    }
+    @keyframes noteMove {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(-7px) scale(1.09);}
     }
     audio {
-      margin: 15px auto;
+      margin: 18px auto 4px auto;
       display: block;
       outline: none;
+      filter: drop-shadow(0 0 12px #8f94fb99);
+      width: 90%;
+      max-width: 400px;
+      border-radius: 8px;
+      background: #2e2e43aa;
+      border: 1px solid #7f53ac33;
+    }
+    @media (max-width: 580px) {
+      .container {
+        padding: 24px 5vw 20px 5vw;
+        min-width: 0;
+      }
+      h1 {
+        font-size: 1.6em;
+      }
+      .btn {
+        font-size: 1em;
+        padding: 12px 22px;
+      }
+      audio {
+        width: 99%;
+      }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(38px);}
+      100% { opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
 <body>
-  <div id="welcome" class="container fade-in">
+  <div class="container">
+    <span class="music-note">🎵</span>
     <h1>Bienvenido/a</h1>
-    <p class="contador">Visitas: <span id="visit-count">0</span></p>
+    <div class="contador">Visitas: <span id="visit-count">0</span></div>
     <a href="https://christian2108.github.io/webpage/" target="_blank">
-      <button class="btn">ENTRAR A LA PAGINA</button>
+      <button class="btn">ENTRAR A LA PÁGINA</button>
     </a>
-    <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop style="display:none;"></audio>
+    <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop controls></audio>
   </div>
   <script>
     fetch('https://api.countapi.xyz/hit/christian2108-webweb/visits')
@@ -86,4 +181,3 @@
   </script>
 </body>
 </html>
-
