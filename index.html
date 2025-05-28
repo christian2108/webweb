@@ -71,20 +71,16 @@
     <a href="https://christian2108.github.io/webpage/" target="_blank">
       <button class="btn">ENTRAR A LA PAGINA</button>
     </a>
- <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop style="display:none;"></audio>
-    </div>
-  
+    <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop style="display:none;"></audio>
   </div>
   <script>
-    // Contador de visitas usando localStorage
-    const visitKey = 'visitCount';
-    let count = localStorage.getItem(visitKey);
-    if (!count) {
-      count = 1;
-    } else {
-      count = parseInt(count) + 1;
-    }
- <script>
+    // Contador de visitas global usando CountAPI
+    fetch('https://api.countapi.xyz/hit/christian2108-webweb/visits')
+      .then(res => res.json())
+      .then(res => {
+        document.getElementById('visit-count').textContent = res.value;
+      });
+  </script>
 </body>
 </html>
 
