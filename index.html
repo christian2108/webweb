@@ -168,8 +168,8 @@
     </a>
     <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop ></audio>
   </div>
- <script>
-  // Cambia el namespace y key a algo único para tu sitio
+ <div id="contador-visitas"></div>
+<script>
   fetch('https://api.countapi.xyz/hit/christian2108_webweb/visitas')
     .then(response => response.json())
     .then(data => {
@@ -177,5 +177,6 @@
         `<strong>Visitas a esta página: ${data.value}</strong>`;
     });
 </script>
+
 </body>
 </html>
