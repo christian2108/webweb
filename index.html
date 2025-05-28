@@ -168,16 +168,14 @@
     </a>
     <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop ></audio>
   </div>
-  <script>
-    fetch('https://api.countapi.xyz/hit/christian2108-webweb/visits')
-      .then(res => res.json())
-      .then(res => {
-        document.getElementById('visit-count').textContent = res.value;
-      })
-      .catch(e => {
-        document.getElementById('visit-count').textContent = 'Error';
-        console.error(e);
-      });
-  </script>
+ <script>
+  // Cambia el namespace y key a algo único para tu sitio
+  fetch('https://api.countapi.xyz/hit/christian2108_webweb/visitas')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('contador-visitas').innerHTML =
+        `<strong>Visitas a esta página: ${data.value}</strong>`;
+    });
+</script>
 </body>
 </html>
