@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Página Estética con Música y Contador</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fuente llamativa de Google Fonts para letras "chidas" -->
+  <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Roboto:wght@900&display=swap" rel="stylesheet">
   <style>
     body {
       min-height: 100vh;
@@ -11,14 +13,13 @@
       padding: 0;
       box-sizing: border-box;
       background: linear-gradient(120deg, #232526 0%, #414345 100%);
-      /* Fallback background */
       background-image: url('https://wallpapers.com/images/hd/4k-tech-wijwmfq6gxe3qf1m.jpg'), 
                         linear-gradient(120deg, #232526 0%, #414345 100%);
       background-blend-mode: overlay;
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Roboto', Arial, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -56,17 +57,23 @@
       z-index: 1;
     }
     h1 {
-      font-size: 2.5em;
+      font-family: 'Monoton', cursive, Arial, sans-serif;
+      font-size: 2.6em;
       margin-bottom: 10px;
       letter-spacing: 2px;
       text-shadow: 0 6px 32px #7e71ff55, 0 1px 0 #111;
       font-weight: 700;
+      color: #ffd700;
+      background: linear-gradient(90deg, #ffd86f, #a6ffcb 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .contador {
-      font-size: 1.25em;
+      font-size: 1.45em;
       margin-top: 10px;
       margin-bottom: 24px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 1px;
       background: linear-gradient(90deg, #ffd86f, #a6ffcb 80%);
       color: transparent;
@@ -76,6 +83,18 @@
       padding: 6px 0;
       transition: color 0.4s;
       user-select: none;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    #visit-count {
+      font-family: 'Monoton', cursive, Arial, sans-serif;
+      font-size: 2.1em;
+      vertical-align: middle;
+      color: #fff;
+      text-shadow: 0 0 8px #ffd86f, 0 1px 0 #222;
+      padding-left: 8px;
+      padding-right: 8px;
+      letter-spacing: 2px;
+      transition: color 0.4s;
     }
     .btn {
       margin-top: 12px;
@@ -166,27 +185,18 @@
     <a href="https://christian2108.github.io/webpage/" target="_blank">
       <button class="btn">ENTRAR A LA PÁGINA</button>
     </a>
-    <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop ></audio>
+    <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop></audio>
   </div>
 <script>
-// Clave para el contador de vistas
 const contadorKey = 'contadorVistasWebpage';
-
-// Obtén el contador actual de localStorage o empieza en 0
 let contador = parseInt(localStorage.getItem(contadorKey)) || 0;
-
-// Incrementa el contador cada vez que se carga la página
 contador++;
 localStorage.setItem(contadorKey, contador);
 
-// Muestra el contador en la página
-window.onload = function() {
-    // Actualiza el span con id "viewCount"
-    var vista = document.getElementById('viewCount');
-    if (vista) {
-        vista.textContent = contador;
-    }
-}
+// Mostrar el contador en la página
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('visit-count').textContent = contador;
+});
 </script>
 </body>
 </html>
