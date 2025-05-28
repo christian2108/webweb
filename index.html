@@ -75,18 +75,15 @@
     </div>
   </div>
   
-  <div id="view-count" style="font-size: 18px; margin-top: 10px;">Visitas: ...</div>
-<script>
-  // Cambia 'christian2108_webweb' por un identificador único si quieres
-  const namespace = 'christian2108_webweb';
-  const key = 'page_views';
-
-  fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById('view-count').innerText = 'Visitas: ' + data.value;
-    });
-</script>
+  <script>
+    // Contador de visitas usando localStorage
+    const visitKey = 'visitCount';
+    let count = localStorage.getItem(visitKey);
+    if (!count) {
+      count = 1;
+    } else {
+      count = parseInt(count) + 1;
+    }
 
 </body>
 </html>
