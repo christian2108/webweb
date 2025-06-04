@@ -187,52 +187,33 @@
     </a>
  <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3"autoplay loop></audio>
   </div>
-  <!-- Botón para ver video -->
-<button id="verVideoBtn">Ver Video</button>
+ <script>
+  // Contador de visitas usando localStorage
+  let visitas = localStorage.getItem('contadorVisitas');
+  if (!visitas) {
+    visitas = 1;
+  } else {
+    visitas = parseInt(visitas) + 1;
+  }
+  localStorage.setItem('contadorVisitas', visitas);
 
-<!-- Contenedor del video (inicialmente oculto) -->
-<div id="videoContainer" style="display:none;">
-  <video id="videoPrincipal" src="videooriginal.mp4" controls width="640"></video>
-</div>
-
-<script>
-  const verVideoBtn = document.getElementById('verVideoBtn');
-  const musicaFondo = document.getElementById('musicaFondo'); // debe existir en tu página
-  const videoContainer = document.getElementById('videoContainer');
-  const videoPrincipal = document.getElementById('videoPrincipal');
-
-  verVideoBtn.addEventListener('click', () => {
-    if (musicaFondo) musicaFondo.pause();
-    videoContainer.style.display = 'block';
-    videoPrincipal.play();
-    verVideoBtn.style.display = 'none';
-  });
-
-  // Opcional: cuando el video termina, vuelve la música de fondo y el botón aparece de nuevo
-  videoPrincipal.addEventListener('ended', () => {
-    if (musicaFondo) musicaFondo.play();
-    videoContainer.style.display = 'none';
-    verVideoBtn.style.display = 'inline-block';
-  });
-   <script>
-const contadorKey = 'contadorVistasWebpage';
-let contador = parseInt(localStorage.getItem(contadorKey)) || 0;
-contador++;
-localStorage.setItem(contadorKey, contador);
-
-// Mostrar el contador en la página
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('visit-count').textContent = contador;
-});
-const contadorKey = 'contadorVistasWebpage';
-let contador = parseInt(localStorage.getItem(contadorKey)) || 0;
-contador++;
-localStorage.setItem(contadorKey, contador);
-
-// Mostrar el contador en la página
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('visit-count').textContent = contador;
-});
+  // Crea o actualiza el elemento visual
+  let el = document.getElementById('contador-visitas');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'contador-visitas';
+    el.style.position = 'fixed';
+    el.style.bottom = '10px';
+    el.style.right = '10px';
+    el.style.background = 'rgba(0,0,0,0.7)';
+    el.style.color = 'white';
+    el.style.padding = '5px 10px';
+    el.style.borderRadius = '8px';
+    el.style.fontSize = '14px';
+    document.body.appendChild(el);
+  }
+  el.textContent = `Visitas a esta página: ${visitas}`;
+</script>
 </script>
 </body>
 </html>
