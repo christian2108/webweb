@@ -187,44 +187,16 @@
   </a>
   <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3"  autoplay loop></audio>
 </div>
-<!-- Video oculto al inicio -->
-<video id="video-original" src="videooriginal.mp4" width="600" style="display:none; margin: 20px 0;"></video>
-
-<!-- Botón para ver el video -->
-<button id="ir-video" onclick="detenerMusicaYVerVideo()">Ver video</button>
-
 <script>
-function detenerMusicaYVerVideo() {
-    var audio = document.getElementById('bg-music');
-    var video = document.getElementById('video-original');
-    if (audio) {
-        audio.pause();
-        audio.currentTime = 0;
+    // Contador de visitas usando LocalStorage (solo cuenta en el navegador local)
+    let visitas = localStorage.getItem('contadorVisitas');
+    if (visitas === null) {
+      visitas = 1;
+    } else {
+      visitas = parseInt(visitas) + 1;
     }
-    if (video) {
-        video.style.display = "block"; // Muestra el video
-        video.play();                  // Reproduce el video
-    }
-}
-</script>
-
-<script>
-  // Obtener el contador actual o iniciarlo en 0
-  let visitas = localStorage.getItem('contadorVisitas') || 0;
-  visitas++;
-  localStorage.setItem('contadorVisitas', visitas);
-  // Mostrar el contador en la página
-  document.addEventListener('DOMContentLoaded', function() {
-    let contador = document.createElement('div');
-    contador.textContent = 'Visitas a esta página: ' + visitas;
-    contador.style.position = 'fixed';
-    contador.style.bottom = '10px';
-    contador.style.right = '10px';
-    contador.style.background = '#fff';
-    contador.style.padding = '5px 10px';
-    contador.style.border = '1px solid #ccc';
-    document.body.appendChild(contador);
-  });
-</script>
+    localStorage.setItem('contadorVisitas', visitas);
+    document.getElementById('contador').textContent = 'Contador de visitas: ' + visitas;
+  </script>
 </body>
 </html>
