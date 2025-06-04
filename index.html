@@ -209,10 +209,21 @@ function detenerMusicaYVerVideo() {
 </script>
 
 <script>
-fetch('https://api.countapi.xyz/hit/christian2108_webweb/visitas')
-  .then(res => res.json())
-  .then(res => {
-    document.getElementById('visit-count').textContent = res.value;
+  // Obtener el contador actual o iniciarlo en 0
+  let visitas = localStorage.getItem('contadorVisitas') || 0;
+  visitas++;
+  localStorage.setItem('contadorVisitas', visitas);
+  // Mostrar el contador en la página
+  document.addEventListener('DOMContentLoaded', function() {
+    let contador = document.createElement('div');
+    contador.textContent = 'Visitas a esta página: ' + visitas;
+    contador.style.position = 'fixed';
+    contador.style.bottom = '10px';
+    contador.style.right = '10px';
+    contador.style.background = '#fff';
+    contador.style.padding = '5px 10px';
+    contador.style.border = '1px solid #ccc';
+    document.body.appendChild(contador);
   });
 </script>
 </body>
