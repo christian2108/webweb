@@ -187,6 +187,22 @@
   </a>
   <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop></audio>
 </div>
+  <!-- Música de fondo -->
+<audio id="bg-music" src="musica.mp3" autoplay loop></audio>
+
+<!-- Botón para ir al video -->
+<button id="ir-video" onclick="detenerMusicaYIr()">Ver otro video</button>
+
+<script>
+function detenerMusicaYIr() {
+    var audio = document.getElementById('bg-music');
+    if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+    window.location.href = "video.html";
+}
+</script>
 <script>
 fetch('https://api.countapi.xyz/hit/christian2108_webweb/visitas')
   .then(res => res.json())
