@@ -214,7 +214,6 @@
     videoContainer.style.display = 'none';
     verVideoBtn.style.display = 'inline-block';
   });
-</script>
 const contadorKey = 'contadorVistasWebpage';
 let contador = parseInt(localStorage.getItem(contadorKey)) || 0;
 contador++;
@@ -223,7 +222,16 @@ localStorage.setItem(contadorKey, contador);
 // Mostrar el contador en la página
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('visit-count').textContent = contador;
-};
+});
+const contadorKey = 'contadorVistasWebpage';
+let contador = parseInt(localStorage.getItem(contadorKey)) || 0;
+contador++;
+localStorage.setItem(contadorKey, contador);
+
+// Mostrar el contador en la página
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('visit-count').textContent = contador;
+});
 </script>
 </body>
 </html>
