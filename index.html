@@ -188,17 +188,29 @@
  <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3"autoplay loop></audio>
   </div>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Obtener el valor actual del contador de visitas desde localStorage
-    let visitas = localStorage.getItem('contadorVisitas');
-    // Si no existe, inicializarlo en 1, si existe, incrementar en 1
-    if (visitas === null) {
-      visitas = 1;
-    } else {
-      visitas = Number(visitas) + 1;
+  // Función para obtener el contador de visitas desde localStorage
+  function obtenerVisitas() {
+    return Number(localStorage.getItem('contadorVisitas')) || 0;
+  }
+
+  // Función para establecer el contador de visitas en localStorage y actualizar el display
+  function actualizarContador(nuevoValor) {
+    localStorage.setItem('contadorVisitas', nuevoValor);
+    let el = document.getElementById('contador-visitas');
+    if (el) {
+      el.textContent = `Visitas a esta página: ${nuevoValor}`;
     }
-    // Guardar el nuevo valor en localStorage
-    localStorage.setItem('contadorVisitas', visitas);
+  }
+
+  // Función para incrementar el contador y actualizar el display
+  function incrementarVisitas() {
+    let visitas = obtenerVisitas() + 1;
+    actualizarContador(visitas);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Incrementar visitas al cargar la página
+    incrementarVisitas();
 
     // Crear o actualizar el elemento visual del contador
     let el = document.getElementById('contador-visitas');
@@ -213,9 +225,13 @@
       el.style.padding = '5px 10px';
       el.style.borderRadius = '8px';
       el.style.fontSize = '14px';
+      el.style.cursor = 'pointer';
+      el.title = "Haz clic para sumar otra visita";
+      el.addEventListener('click', incrementarVisitas);
       document.body.appendChild(el);
     }
-    el.textContent = `Visitas a esta página: ${visitas}`;
+    // Mostrar el valor actualizado
+    el.textContent = `Visitas a esta página: ${obtenerVisitas()}`;
   });
 </script>
 </body>
