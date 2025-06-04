@@ -188,15 +188,40 @@
   <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3"  autoplay loop></audio>
 </div>
 <script>
-    // Contador de visitas usando LocalStorage (solo cuenta en el navegador local)
-    let visitas = localStorage.getItem('contadorVisitas');
-    if (visitas === null) {
-      visitas = 1;
-    } else {
-      visitas = parseInt(visitas) + 1;
+// Animación para el contador
+function animateCount(element, start, end, duration) {
+  if (start === end) {
+    element.textContent = end;
+    return;
+  }
+  let range = end - start;
+  let increment = end > start ? 1 : -1;
+  let stepTime = Math.abs(Math.floor(duration / range));
+  let current = start;
+  let timer = setInterval(function() {
+    current += increment;
+    element.textContent = current;
+    if (current == end) {
+      clearInterval(timer);
     }
-    localStorage.setItem('contadorVisitas', visitas);
-    document.getElementById('contador').textContent = 'Contador de visitas: ' + visitas;
-  </script>
+  }, stepTime);
+}
+
+// Leer visitas de localStorage
+let visitas = localStorage.getItem('contadorVisitas');
+let visitasPrevias = visitas ? parseInt(visitas) : 0;
+let visitasActuales = visitasPrevias + 1;
+localStorage.setItem('contadorVisitas', visitasActuales);
+
+// Mostrar el contador con animación
+const countEl = document.getElementById('visit-count');
+if (visitasPrevias > 0) {
+  animateCount(countEl, visitasPrevias, visitasActuales, 600);
+} else {
+  countEl.textContent = "¡Tu primera visita!";
+  countEl.style.color = "#a6ffcb";
+  countEl.style.fontSize = "2em";
+}
+</script>
 </body>
 </html>
