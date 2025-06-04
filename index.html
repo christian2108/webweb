@@ -188,51 +188,24 @@
  <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3"autoplay loop></audio>
   </div>
 <script>
-  // Función para obtener el contador de visitas desde localStorage
-  function obtenerVisitas() {
-    return Number(localStorage.getItem('contadorVisitas')) || 0;
-  }
+  // Obtener el número actual de vistas o inicializarlo en 0
+  let views = localStorage.getItem('webweb_views');
+  views = views ? parseInt(views) + 1 : 1;
+  localStorage.setItem('webweb_views', views);
 
-  // Función para establecer el contador de visitas en localStorage y actualizar el display
-  function actualizarContador(nuevoValor) {
-    localStorage.setItem('contadorVisitas', nuevoValor);
-    let el = document.getElementById('contador-visitas');
-    if (el) {
-      el.textContent = `Visitas a esta página: ${nuevoValor}`;
-    }
-  }
-
-  // Función para incrementar el contador y actualizar el display
-  function incrementarVisitas() {
-    let visitas = obtenerVisitas() + 1;
-    actualizarContador(visitas);
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    // Incrementar visitas al cargar la página
-    incrementarVisitas();
-
-    // Crear o actualizar el elemento visual del contador
-    let el = document.getElementById('contador-visitas');
-    if (!el) {
-      el = document.createElement('div');
-      el.id = 'contador-visitas';
-      el.style.position = 'fixed';
-      el.style.bottom = '10px';
-      el.style.right = '10px';
-      el.style.background = 'rgba(0,0,0,0.7)';
-      el.style.color = 'white';
-      el.style.padding = '5px 10px';
-      el.style.borderRadius = '8px';
-      el.style.fontSize = '14px';
-      el.style.cursor = 'pointer';
-      el.title = "Haz clic para sumar otra visita";
-      el.addEventListener('click', incrementarVisitas);
-      document.body.appendChild(el);
-    }
-    // Mostrar el valor actualizado
-    el.textContent = `Visitas a esta página: ${obtenerVisitas()}`;
-  });
+  // Mostrar el contador en la página
+  let counter = document.createElement('div');
+  counter.style.position = 'fixed';
+  counter.style.bottom = '10px';
+  counter.style.right = '10px';
+  counter.style.background = 'rgba(0,0,0,0.7)';
+  counter.style.color = '#fff';
+  counter.style.padding = '8px 16px';
+  counter.style.borderRadius = '8px';
+  counter.style.fontSize = '16px';
+  counter.style.zIndex = '9999';
+  counter.innerText = 'Visitas: ' + views;
+  document.body.appendChild(counter);
 </script>
 </body>
 </html>
