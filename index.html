@@ -187,25 +187,13 @@
     </a>
  <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3"autoplay loop></audio>
   </div>
+<div id="visitas">Vistas: <span id="count">Cargando...</span></div>
 <script>
-  // Obtener el número actual de vistas o inicializarlo en 0
-  let views = localStorage.getItem('webweb_views');
-  views = views ? parseInt(views) + 1 : 1;
-  localStorage.setItem('webweb_views', views);
-
-  // Mostrar el contador en la página
-  let counter = document.createElement('div');
-  counter.style.position = 'fixed';
-  counter.style.bottom = '10px';
-  counter.style.right = '10px';
-  counter.style.background = 'rgba(0,0,0,0.7)';
-  counter.style.color = '#fff';
-  counter.style.padding = '8px 16px';
-  counter.style.borderRadius = '8px';
-  counter.style.fontSize = '16px';
-  counter.style.zIndex = '9999';
-  counter.innerText = 'Visitas: ' + views;
-  document.body.appendChild(counter);
+fetch('https://api.countapi.xyz/hit/christian2108_webweb/visitas')
+  .then(res => res.json())
+  .then(res => {
+    document.getElementById('count').textContent = res.value;
+  });
 </script>
 </body>
 </html>
