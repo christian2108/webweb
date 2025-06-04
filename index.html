@@ -178,21 +178,20 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <span class="music-note">🎵</span>
-    <h1>Bienvenido/a</h1>
-    <div class="contador">Visitas: <span id="visit-count">0</span></div>
-    <a href="https://christian2108.github.io/webpage/" target="_blank">
-      <button class="btn">ENTRAR A LA PÁGINA</button>
-    </a>
- <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3"autoplay loop></audio>
-  </div>
-<div id="visitas">Vistas: <span id="count">Cargando...</span></div>
+ <div class="container">
+  <span class="music-note">🎵</span>
+  <h1>Bienvenido/a</h1>
+  <div class="contador">Visitas: <span id="visit-count">0</span></div>
+  <a href="https://christian2108.github.io/webpage/" target="_blank">
+    <button class="btn">ENTRAR A LA PÁGINA</button>
+  </a>
+  <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop></audio>
+</div>
 <script>
 fetch('https://api.countapi.xyz/hit/christian2108_webweb/visitas')
   .then(res => res.json())
   .then(res => {
-    document.getElementById('count').textContent = res.value;
+    document.getElementById('visit-count').textContent = res.value;
   });
 </script>
 </body>
