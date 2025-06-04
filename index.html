@@ -187,23 +187,30 @@
   </a>
   <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop></audio>
 </div>
+<!-- Música de fondo -->
+<audio id="bg-music" src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3" autoplay loop></audio>
 
-<!-- Video integrado en la página -->
-<video id="video-original" src="videooriginal.mp4"  autoplay loop width="600" style="display:block; margin: 20px 0;"></video>
+<!-- Video oculto al inicio -->
+<video id="video-original" src="videooriginal.mp4" width="600" style="display:none; margin: 20px 0;"></video>
 
-<!-- Botón para ir al video -->
-<button id="ir-video" onclick="detenerMusicaYIr()">Ver otro video</button>
+<!-- Botón para ver el video -->
+<button id="ir-video" onclick="detenerMusicaYVerVideo()">Ver video</button>
 
 <script>
-function detenerMusicaYIr() {
+function detenerMusicaYVerVideo() {
     var audio = document.getElementById('bg-music');
+    var video = document.getElementById('video-original');
     if (audio) {
         audio.pause();
         audio.currentTime = 0;
     }
-    window.location.href = "videooriginal.mp4";
+    if (video) {
+        video.style.display = "block"; // Muestra el video
+        video.play();                  // Reproduce el video
+    }
 }
 </script>
+
 <script>
 fetch('https://api.countapi.xyz/hit/christian2108_webweb/visitas')
   .then(res => res.json())
