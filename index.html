@@ -187,7 +187,34 @@
     </a>
  <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3"autoplay loop></audio>
   </div>
+  <!-- Botón para ver video -->
+<button id="verVideoBtn">Ver Video</button>
+
+<!-- Contenedor del video (inicialmente oculto) -->
+<div id="videoContainer" style="display:none;">
+  <video id="videoPrincipal" src="videooriginal.mp4" controls width="640"></video>
+</div>
+
 <script>
+  const verVideoBtn = document.getElementById('verVideoBtn');
+  const musicaFondo = document.getElementById('musicaFondo'); // debe existir en tu página
+  const videoContainer = document.getElementById('videoContainer');
+  const videoPrincipal = document.getElementById('videoPrincipal');
+
+  verVideoBtn.addEventListener('click', () => {
+    if (musicaFondo) musicaFondo.pause();
+    videoContainer.style.display = 'block';
+    videoPrincipal.play();
+    verVideoBtn.style.display = 'none';
+  });
+
+  // Opcional: cuando el video termina, vuelve la música de fondo y el botón aparece de nuevo
+  videoPrincipal.addEventListener('ended', () => {
+    if (musicaFondo) musicaFondo.play();
+    videoContainer.style.display = 'none';
+    verVideoBtn.style.display = 'inline-block';
+  });
+</script>
 const contadorKey = 'contadorVistasWebpage';
 let contador = parseInt(localStorage.getItem(contadorKey)) || 0;
 contador++;
