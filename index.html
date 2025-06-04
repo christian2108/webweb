@@ -188,18 +188,19 @@
  <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3"autoplay loop></audio>
   </div>
 <script>
-  // Ejecutar el código cuando la página haya cargado
   document.addEventListener('DOMContentLoaded', function() {
-    // Obtener el valor actual del contador de visitas
+    // Obtener el valor actual del contador de visitas desde localStorage
     let visitas = localStorage.getItem('contadorVisitas');
-    if (!visitas) {
+    // Si no existe, inicializarlo en 1, si existe, incrementar en 1
+    if (visitas === null) {
       visitas = 1;
     } else {
-      visitas = parseInt(visitas, 10) + 1;
+      visitas = Number(visitas) + 1;
     }
+    // Guardar el nuevo valor en localStorage
     localStorage.setItem('contadorVisitas', visitas);
 
-    // Crear o actualizar el elemento visual
+    // Crear o actualizar el elemento visual del contador
     let el = document.getElementById('contador-visitas');
     if (!el) {
       el = document.createElement('div');
