@@ -188,31 +188,34 @@
  <audio src="LEEB - Ella Ya Me Olvidó (Audio Oficial).mp3"autoplay loop></audio>
   </div>
 <script>
-  // Contador de visitas usando localStorage
-  let visitas = localStorage.getItem('contadorVisitas');
-  if (!visitas) {
-    visitas = 1;
-  } else {
-    visitas = parseInt(visitas) + 1;
-  }
-  localStorage.setItem('contadorVisitas', visitas);
+  // Ejecutar el código cuando la página haya cargado
+  document.addEventListener('DOMContentLoaded', function() {
+    // Obtener el valor actual del contador de visitas
+    let visitas = localStorage.getItem('contadorVisitas');
+    if (!visitas) {
+      visitas = 1;
+    } else {
+      visitas = parseInt(visitas, 10) + 1;
+    }
+    localStorage.setItem('contadorVisitas', visitas);
 
-  // Crea o actualiza el elemento visual
-  let el = document.getElementById('contador-visitas');
-  if (!el) {
-    el = document.createElement('div');
-    el.id = 'contador-visitas';
-    el.style.position = 'fixed';
-    el.style.bottom = '10px';
-    el.style.right = '10px';
-    el.style.background = 'rgba(0,0,0,0.7)';
-    el.style.color = 'white';
-    el.style.padding = '5px 10px';
-    el.style.borderRadius = '8px';
-    el.style.fontSize = '14px';
-    document.body.appendChild(el);
-  }
-  el.textContent = `Visitas a esta página: ${visitas}`;
+    // Crear o actualizar el elemento visual
+    let el = document.getElementById('contador-visitas');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'contador-visitas';
+      el.style.position = 'fixed';
+      el.style.bottom = '10px';
+      el.style.right = '10px';
+      el.style.background = 'rgba(0,0,0,0.7)';
+      el.style.color = 'white';
+      el.style.padding = '5px 10px';
+      el.style.borderRadius = '8px';
+      el.style.fontSize = '14px';
+      document.body.appendChild(el);
+    }
+    el.textContent = `Visitas a esta página: ${visitas}`;
+  });
 </script>
 </body>
 </html>
